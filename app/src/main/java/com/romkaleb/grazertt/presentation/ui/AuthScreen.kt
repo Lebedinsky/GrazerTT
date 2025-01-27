@@ -100,7 +100,7 @@ fun AuthForm(
             }
             Row(horizontalArrangement = Arrangement.Center) {
                 Text(
-                    modifier = Modifier.padding(top = 120.dp),
+                    modifier = Modifier.padding(top = 20.dp),
                     text = "Welcome my friend!",
                     color = MaterialTheme.colorScheme.tertiary,
                     fontSize = 25.sp,
