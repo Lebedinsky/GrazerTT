@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -115,7 +116,9 @@ fun AuthForm(
                 EmailTextField(
                     value = email,
                     onChange = { onEmailChanged(it) },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("EmailTextField")
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 PasswordTextField(
@@ -128,12 +131,15 @@ fun AuthForm(
                             focusManager.clearFocus()
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("PasswordTextField")
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 LoginButton(
                     onClick = { onLoginClicked() },
-                    isEnabled = isCredentialsValid(email, password)
+                    isEnabled = isCredentialsValid(email, password),
+                    modifier = Modifier.testTag("LoginButton")
                 )
             }
         }
@@ -224,11 +230,13 @@ fun PasswordTextField(
 @Composable
 fun LoginButton(
     onClick: () -> Unit,
-    isEnabled: Boolean
+    isEnabled: Boolean,
+    modifier: Modifier
 ) {
     FilledTonalButton(
         onClick = onClick,
-        enabled = isEnabled
+        enabled = isEnabled,
+        modifier = modifier
     ) {
         Text(
             text = "Login",

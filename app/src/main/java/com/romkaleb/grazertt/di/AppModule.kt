@@ -77,26 +77,6 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun providesAuthRepository(
-        apiService: ApiService,
-        authPreferences: AuthPreferences
-    ): IAuthRepository {
-        return AuthRepositoryImpl(
-            apiService = apiService,
-            authPreferences = authPreferences
-        )
-    }
-
-    @Provides
-    @Singleton
-    fun providesUserRepository(
-        apiService: ApiService
-    ): IUserRepository {
-        return UserRepositoryImpl(apiService = apiService)
-    }
-
-    @Provides
-    @Singleton
     fun providesLoginUseCase(repository: IAuthRepository): ILoginUseCase {
         return LoginUseCaseImpl(repository)
     }
